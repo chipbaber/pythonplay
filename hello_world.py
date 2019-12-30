@@ -28,3 +28,21 @@ while i<10:
     print(i)
     i=i+1
 print("All Done with loop")
+
+print("\n ---------------Testing a if statement--------------")
+x = int(input("Please enter an integer: "))
+
+if x > 50:
+    print("Greater than 50")
+
+elif x > 20 and x < 50:
+    print("Your number is between 20 & 50")
+
+else:
+    print("< 20")
+
+print("\n ---------------Testing a for statement--------------")
+i=1
+for a in baseball_numbers:
+    i+=1
+    print("Number choice "+ str(i) + " is " + str(a))
