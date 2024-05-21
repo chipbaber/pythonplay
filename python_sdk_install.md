@@ -2,12 +2,14 @@
 Want to get started developing against the Oracle Cloud Infrastructure (OCI) with those python coding skills you picked up? This video shows how to go from zero to executing your first python script on Windows. It is designed for those developers who don't want to wade through documentation, just want to dive in and get started. Lets get started. 
 
 - Open Powershell on your PC. 
+
 ![](assets/2024-05-16-09-09-22.png)
 
 - Issue the following command in powershell to get the version of Windows you are running.
 ```
 slmgr /dlv
 ``` 
+
 ![](assets/2024-05-16-09-16-07.png)
 
 - Check to see if python is installed already. 
@@ -16,9 +18,11 @@ python --version
 ```
 
 if installed you will see something like this showcasing the version installed as well.  
+
 ![](assets/2024-05-16-09-13-20.png)
 
 if not installed you will see something like this. 
+
 ![](assets/2024-05-16-10-07-01.png)
 
 
@@ -31,6 +35,18 @@ if not installed you will see something like this.
 ```
 python --version
 ```
+
+- To run the python sdk for OCI you also need a supported version of OpenSSL. Execute the following command in powershell to see which version of openssl is installed on your machine. At the time of this recording the supported version of OpenSSL for the Python SDK is version 1.0.2 or newer. Check your version of open SSL. 
+```
+python -c "import ssl; print(ssl.OPENSSL_VERSION)"
+```
+
+- If your version is not meeting the min, then go here and download/install the executable that matches your windows OS. (Install OpenSSL)[https://slproweb.com/products/Win32OpenSSL.html]. If you need to check your chipset before installing issue this command in powershell. 
+```
+Get-WmiObject Win32_Processor
+```
+
+![](assets/2024-05-21-11-45-25.png)
 
 - Check to pip install version. PIP is a package manager for Python packages. 
 ```
@@ -57,14 +73,6 @@ notepad config.chipspicks
 ```
 
 - We will need to create or leverage a OCI fingerprint for the user we wish to connect to OCI with inside the python sdk. Navigate to your identity on OCI. If a fingerprint exists you can leverage it. Otherwise you will need to create a new one. Once created you can copy over the information required for your config file. I suggest watching the youtube video to follow these steps. 
-
-- To run the python sdk for OCI you also need a supported version of OpenSSL. Execute the following command in powershell to see which version of openssl is installed on your machine. At the time of this recording the supported version of OpenSSL for the Python SDK is version 1.0.2 or newer. Check your version of open SSL. 
-```
-python -c "import ssl; print(ssl.OPENSSL_VERSION)"
-```
-
-- If your version is not meeting the min, then go here and download/install the executable that matches your windows OS. (Install OpenSSL)[https://slproweb.com/products/Win32OpenSSL.html]
-
 
 - With everything in place lets run our first python SDK program. Place the code below in a new file called listCompartments.py in your $HOME directory.
 
@@ -97,6 +105,7 @@ python listCompartments.py
 ```
 pip uninstall oci
 ```
+
 ![](assets/2024-05-16-09-22-47.png)
 
 
