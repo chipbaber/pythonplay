@@ -18,44 +18,56 @@ python --version
 if installed you will see something like this showcasing the version installed as well.  
 ![](assets/2024-05-16-09-13-20.png)
 
-if not installed 
+if not installed you will see something like this. 
+![](assets/2024-05-16-10-07-01.png)
 
-- Navigate to the following link to see the supported versions of python for the OCI python SDK for your Windows OS version. [https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cliconcepts.htm#Requirements__SupportedPythonVersionsandOperatingSystems](Supported Python Versions for SDK by OS)
+
+- Navigate to the following link to see the supported versions of python for the OCI python SDK for your Windows OS version. [Supported Python Versions for SDK by OS](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cliconcepts.htm#Requirements__SupportedPythonVersionsandOperatingSystems)
 
 
-- Install a supported version of Python. [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/)
+- Install a supported version of Python for your OS. The executables can be downloaded from here. [Download Python](https://www.python.org/downloads/windows/)
 
 - Test python install in powershell.
 ```
 python --version
 ```
 
-- Check to pip install version. 
+- Check to pip install version. PIP is a package manager for Python packages. 
 ```
 pip --version
 ```
 
-- If older version you may want to upgrade. 
+- (Optional) You most likely will have a updated version of pip if you install python. However, if older version is present you may want to upgrade by navigating to your python install directory in powershell and running the following upgrade command. 
+
 ```
 python.exe -m pip install --upgrade pip
 ```
 
-- Issue the following command to install python sdk. 
+- Now we will install the python sdk. To install it run the following command. 
 ```
 pip install oci
 ```
 
-- Create a .oci directory to house your config file. For example C:\Users\CBABER\ would be a user homepath. Launch notepad to create the .oci config, if you have multiple tenancies I would suggest adding a .<tenancyname> at the end. 
+- Create a .oci directory to house your oci config file. The oci config file tells your python SDK which tenancy and user you want to connect too. It is best to do this in your home path. For example C:\Users\CBABER\ would be an user homepath. Once we navigate to the home directory, we will launch notepad to create the .oci config, if you have multiple tenancies I would suggest adding a .<tenancyname> at the end of your config file name. 
 ```
-mkdir C:\Users\CBABER\.oci
-cd C:\Users\CBABER\.oci
+cd $HOME
+mkdir $HOME\.oci
+cd $HOME\.oci
 notepad config.chipspicks
 ```
 
-- Navigate to your identity on OCI. If a fingerprint exists you can leverage it. Otherwise you will need to create a new one. Once created you can copy over the information required for your config file. 
+- We will need to create or leverage a OCI fingerprint for the user we wish to connect to OCI with inside the python sdk. Navigate to your identity on OCI. If a fingerprint exists you can leverage it. Otherwise you will need to create a new one. Once created you can copy over the information required for your config file. I suggest watching the youtube video to follow these steps. 
+
+- To run the python sdk for OCI you also need a supported version of OpenSSL. Execute the following command in powershell to see which version of openssl is installed on your machine. At the time of this recording the supported version of OpenSSL for the Python SDK is version 1.0.2 or newer. Check your version of open SSL. 
+```
+python -c "import ssl; print(ssl.OPENSSL_VERSION)"
+```
+
+- If your version is not meeting the min, then go here and download/install the executable that matches your windows OS. (Install OpenSSL)[https://slproweb.com/products/Win32OpenSSL.html]
 
 
-- Test your install by placing the code below in a new file called listCompartments.py.
+- With everything in place lets run our first python SDK program. Place the code below in a new file called listCompartments.py in your $HOME directory.
+
 ```
 import oci
 print("Starting Program");
@@ -80,7 +92,6 @@ print(compartmentlist);
 ```
 python listCompartments.py
 ```
-
 
 - If you want to remove the OCI Python SDK issue the following command. 
 ```
